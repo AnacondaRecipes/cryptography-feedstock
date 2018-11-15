@@ -1,7 +1,8 @@
-diff -urN cryptography-2.3.1.orig/tests/hazmat/backends/test_openssl.py cryptography-2.3.1/tests/hazmat/backends/test_openssl.py
---- cryptography-2.3.1.orig/tests/hazmat/backends/test_openssl.py	2018-08-28 10:56:38.000000000 +0100
-+++ cryptography-2.3.1/tests/hazmat/backends/test_openssl.py	2018-08-28 10:57:49.000000000 +0100
-@@ -271,12 +271,14 @@
+diff --git a/tests/hazmat/backends/test_openssl.py b/tests/hazmat/backends/test_openssl.py
+index 0aa72d8..d29b84c 100644
+--- a/tests/hazmat/backends/test_openssl.py
++++ b/tests/hazmat/backends/test_openssl.py
+@@ -271,12 +271,14 @@ class TestOpenSSLRandomEngine(object):
                          'getrandom']
          if sys.platform.startswith('linux'):
              assert name in ['getrandom', '/dev/urandom']
@@ -19,6 +20,6 @@ diff -urN cryptography-2.3.1.orig/tests/hazmat/backends/test_openssl.py cryptogr
 +#                assert name == 'getentropy'
 +#            else:
 +#                assert name == '/dev/urandom'
-         if 'bsd' in sys.platform:
-             assert name in ['getentropy', '/dev/urandom']
          if sys.platform == 'win32':
+             assert name == 'CryptGenRandom'
+ 

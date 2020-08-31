@@ -53,6 +53,7 @@ test:
     - pretend
     - pytest
     - pytz
+    - setuptools
   source_files:
     - tests
   commands:

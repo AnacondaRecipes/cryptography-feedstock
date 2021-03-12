@@ -16,6 +16,7 @@ build:
 requirements:
   build:
     - {{ compiler('rust') }}
+    - vs2017_{{ target_platform }}    # [win]
   host:
     - python
     - pip
@@ -27,6 +28,7 @@ requirements:
     - python
     - openssl
     - cffi >=1.12
+    - libgcc-ng     # [linux]; needed by `_rust.abi3.so`
 
 test:
   imports:

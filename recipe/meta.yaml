@@ -1,4 +1,4 @@
-{% set version = "3.3.2" %}
+{% set version = "3.4.6" %}
 
 package:
   name: cryptography
@@ -6,29 +6,29 @@ package:
 
 source:
   url: https://pypi.io/packages/source/c/cryptography/cryptography-{{ version }}.tar.gz
-  sha256: 5a60d3780149e13b7a6ff7ad6526b38846354d11a15e21068e57073e29e19bed
+  sha256: 2d32223e5b0ee02943f32b19245b61a62db83a882f0e76cc564e1cec60d48f87
 
 build:
   number: 0
+  skip: true  # [py<36]
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   build:
-    - python                                 # [build_platform != target_platform]
-    - cffi                                   # [python_impl != "pypy" and build_platform != target_platform]
-    - {{ compiler('c') }}
+    - {{ compiler('rust') }}
+    - vs2017_{{ target_platform }}    # [win]
   host:
     - python
     - pip
+    - setuptools >=40.6.0
+    - setuptools-rust >=0.11.4
     - openssl
-    - cffi !=1.11.3,>=1.8   # [python_impl != "pypy"]
+    - cffi >=1.12
   run:
     - python
     - openssl
-    - cffi !=1.11.3,>=1.8   # [python_impl != "pypy"]
-    - enum34                # [py2k]
-    - ipaddress             # [py2k]
-    - six >=1.4.1
+    - cffi >=1.12
+    - libgcc-ng     # [linux]; needed by `_rust.abi3.so`
 
 test:
   imports:
@@ -51,6 +51,7 @@ test:
     - iso8601
     - pretend
     - pytest
+    - pytest-subtests
     - pytz
   source_files:
     - tests
@@ -60,7 +61,7 @@ test:
 
 about:
   home: https://github.com/pyca/cryptography
-  license: Apache-2.0 AND BSD-3-Clause AND PSF-2.0
+  license: Apache-2.0 AND BSD-3-Clause AND PSF-2.0 AND MIT
   license_family: BSD
   license_file: LICENSE
   summary: Provides cryptographic recipes and primitives to Python developers
@@ -78,5 +79,5 @@ about:
 extra:
   recipe-maintainers:
     - jakirkham
-    - jjhelmus
     - ocefpaf
+    - chenghlee

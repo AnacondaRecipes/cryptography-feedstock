@@ -10,7 +10,7 @@ source:
 
 build:
   number: 0
-  skip: true  # [py<36]
+  skip: true  # [py<36 or win32]
   script: {{ PYTHON }} -m pip install . -vv
   missing_dso_whitelist:  # [linux]
     - $RPATH/ld64.so.1    # [linux]

@@ -1,4 +1,4 @@
 rust_compiler:
   - rust
-rust_compiler_version:  # [not win32]
-  - 1.46.0              # [not win32]
+rust_compiler_version:
+  - 1.46.0

@@ -21,7 +21,6 @@ requirements:
   host:
     - python
     - cffi >=1.12
-    - openssl
     - pip
     - setuptools >=40.6.0
     - setuptools-rust >=0.11.4

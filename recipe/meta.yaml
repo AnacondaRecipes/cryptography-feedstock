@@ -20,15 +20,16 @@ requirements:
     - vs2017_{{ target_platform }}    # [win]
   host:
     - python
+    - cffi >=1.12
+    - openssl
     - pip
     - setuptools >=40.6.0
     - setuptools-rust >=0.11.4
-    - openssl
-    - cffi >=1.12
+    - wheel
   run:
     - python
-    - openssl
     - cffi >=1.12
+    - openssl
     - libgcc-ng     # [linux]; needed by `_rust.abi3.so`
 
 test:
@@ -48,15 +49,17 @@ test:
     - cryptography.x509
   requires:
     - cryptography-vectors {{ version }}
-    - hypothesis
+    - hypothesis >=1.11.4,!=3.79.2
     - iso8601
+    - pip
     - pretend
-    - pytest
+    - pytest >=6.2.0
     - pytest-subtests
     - pytz
   source_files:
     - tests
   commands:
+    - pip check
     # run_test.py will check that the correct openssl version is linked
     - pytest          # [not (arm64 or s390x or aarch64)]
     - pytest || true  # [arm64 or s390x or aarch64]
@@ -74,7 +77,7 @@ about:
     and PyPy 2.6+. Cryptography includes both high level recipes, and low level
     interfaces to common cryptographic algorithms such as symmetric ciphers,
     message digests and key derivation functions.
-  doc_url: http://cryptography.readthedocs.io/
+  doc_url: https://cryptography.io/
   doc_source_url: https://github.com/pyca/cryptography/blob/master/docs/index.rst
   dev_url: https://github.com/pyca/cryptography
 

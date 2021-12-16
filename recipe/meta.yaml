@@ -10,6 +10,7 @@ source:
 
 build:
   number: 0
+  # trigger: 1
   skip: true  # [py<36 or win32]
   script: {{ PYTHON }} -m pip install . -vv
   missing_dso_whitelist:  # [linux]

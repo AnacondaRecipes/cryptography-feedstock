@@ -1,11 +1,12 @@
+{% set name = "cryptography" %}
 {% set version = "36.0.1" %}
 
 package:
-  name: cryptography
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/c/cryptography/cryptography-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/cryptography-{{ version }}.tar.gz
   sha256: 53e5c1dc3d7a953de055d77bef2ff607ceef7a2aac0353b5d630ab67f7423638
 
 build:

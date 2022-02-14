@@ -23,7 +23,6 @@ requirements:
   host:
     - python
     - cffi >=1.12
-    - libffi  # [unix]
     - pip
     - setuptools >=40.6.0
     - setuptools-rust >=0.11.4

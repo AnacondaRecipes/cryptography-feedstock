@@ -54,14 +54,15 @@ test:
     - pretend
     - pytest >=6.2.0
     - pytest-subtests
+    - pytest-xdist
+    - pytest-benchmark
     - pytz
   source_files:
     - tests
   commands:
     - pip check
     # run_test.py will check that the correct openssl version is linked
-    - pytest -k 'not (test_aki_public_bytes)' # [not (arm64 or s390x or aarch64)]
-    - pytest -k 'not (test_aki_public_bytes or test_no_leak_no_malloc or est_no_leak_free or test_no_leak_gc or test_leak or test_errors or test_der_x509_certificate_extensions[x509/PKITS_data/certs/ValidcRLIssuerTest28EE.crt] or test_pem_x509_certificate_extensions[x509/cryptography.io.pem] or test_x509_csr_extensions or test_ec_private_numbers_private_key or test_ec_derive_private_key or test_x25519_pubkey_from_private_key or test_create_ocsp_request or test_load_pkcs12_key_and_certificates[pkcs12/cert-aes256cbc-no-key.p12] or test_load_pkcs12_key_and_certificates[pkcs12/cert-key-aes256cbc.p12] or test_create_crl_with_idp or test_create_certificate_with_extensions or test_write_pkcs12_key_and_certificates)' # [arm64 or s390x or aarch64]
+    - pytest -n auto
 
 about:
   home: https://github.com/pyca/cryptography

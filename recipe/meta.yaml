@@ -9,8 +9,8 @@ source:
   sha256: d610d0ee14dd9109006215c7c0de15eee91230b70a9bce2263461cf7c3720b83
 
 build:
-  number: 0
-  skip: true  # [py<36 or win32]
+  number: 1
+  skip: true  # [py<37 or win32]
   script: {{ PYTHON }} -m pip install . -vv
   missing_dso_whitelist:  # [linux]
     - $RPATH/ld64.so.1    # [linux]

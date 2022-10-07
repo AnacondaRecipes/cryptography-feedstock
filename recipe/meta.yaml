@@ -70,6 +70,7 @@ about:
   license: (BSD-3-Clause OR Apache-2.0) AND PSF-2.0 AND MIT
   license_family: BSD
   license_file: LICENSE
+  license_url: https://github.com/pyca/cryptography/blob/{{ version }}/vectors/LICENSE
   summary: Provides cryptographic recipes and primitives to Python developers
   description: |
     Cryptography is a package which provides cryptographic recipes and 
@@ -79,7 +80,7 @@ about:
     common cryptographic algorithms such as symmetric ciphers, message digests, 
     and key derivation functions. 
   doc_url: https://cryptography.io/en/{{ version }}/
-  doc_source_url: https://github.com/pyca/cryptography/blob/master/docs/index.rst
+  doc_source_url: https://github.com/pyca/cryptography/blob/{{ version }}/docs/index.rst
   dev_url: https://github.com/pyca/cryptography
 
 extra:

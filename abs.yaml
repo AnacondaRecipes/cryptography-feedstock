@@ -1,2 +1,2 @@
 channels:
-  build: cryptography
+  build: cryptography-vectors

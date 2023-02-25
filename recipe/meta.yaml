@@ -1,5 +1,3 @@
-{% set version = "39.0.1" %}
-
 package:
   name: cryptography
   version: {{ version }}
@@ -12,8 +10,8 @@ build:
   number: 0
   skip: true  # [py<37 or win32]
   script: {{ PYTHON }} -m pip install . -vv
-  missing_dso_whitelist:  # [linux]
-    - $RPATH/ld64.so.1    # [linux]
+  missing_dso_whitelist:  # [s390x]
+    - $RPATH/ld64.so.1    # [s390x]
 requirements:
   build:
     - {{ compiler('rust') }}
@@ -62,15 +60,15 @@ test:
   commands:
     - pip check
     # run_test.py will check that the correct openssl version is linked
-    - pytest -n auto #  [not (arm64 or s390x)]
+    - pytest -n auto #  [not arm64]
     - pytest -n auto -k "not (test_der_x509_certificate_extensions[x509/PKITS_data/certs/ValidcRLIssuerTest28EE.crt] or test_x509_csr_extensions or test_no_leak_free or test_no_leak_no_malloc or test_leak or test_load_pkcs12_key_and_certificates[pkcs12/cert-key-aes256cbc.p12] or test_create_certificate_with_extensions or test_ec_derive_private_key or test_ec_private_numbers_private_key or test_create_ocsp_request or test_write_pkcs12_key_and_certificates or test_errors or test_load_pkcs12_key_and_certificates[pkcs12/cert-aes256cbc-no-key.p12] or test_ec_private_numbers_private_key or test_pem_x509_certificate_extensions[x509/cryptography.io.pem] or test_create_crl_with_idp or test_no_leak_gc or test_x25519_pubkey_from_private_key)" # [arm64]
-    - pytest -n auto -k "not (test_pkcs12_ordering or test_ec_derive_private_key or test_create_certificate_with_extensions or TestEllipticCurvePEMPublicKeySerialization or test_create_crl_with_idp or TestECDSASSHSerialization or TestOpenSSHSerialization or TestOCSPResponseBuilder or test_add_attribute_tag)" # [s390x]
 
 about:
   home: https://github.com/pyca/cryptography
   license: (BSD-3-Clause OR Apache-2.0) AND PSF-2.0 AND MIT
   license_family: BSD
   license_file: LICENSE
+  license_url: https://github.com/pyca/cryptography/blob/{{ version }}/vectors/LICENSE
   summary: Provides cryptographic recipes and primitives to Python developers
   description: |
     Cryptography is a package which provides cryptographic recipes and
@@ -80,7 +78,7 @@ about:
     common cryptographic algorithms such as symmetric ciphers, message digests,
     and key derivation functions.
   doc_url: https://cryptography.io/en/{{ version }}/
-  doc_source_url: https://github.com/pyca/cryptography/blob/master/docs/index.rst
+  doc_source_url: https://github.com/pyca/cryptography/blob/{{ version }}/docs/index.rst
   dev_url: https://github.com/pyca/cryptography
 
 extra:

@@ -1,3 +1,5 @@
+{% set version = "39.0.1" %}
+
 package:
   name: cryptography
   version: {{ version }}

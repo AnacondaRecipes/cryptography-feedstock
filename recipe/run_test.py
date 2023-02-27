@@ -1,5 +1,18 @@
 import subprocess
 import time
+import cryptography
+import cryptography.fernet
+import cryptography.hazmat
+import cryptography.hazmat.backends
+import cryptography.hazmat.backends.openssl
+import cryptography.hazmat.bindings
+import cryptography.hazmat.bindings.openssl
+import cryptography.hazmat.primitives
+import cryptography.hazmat.primitives.asymmetric
+import cryptography.hazmat.primitives.ciphers
+import cryptography.hazmat.primitives.kdf
+import cryptography.hazmat.primitives.twofactor
+import cryptography.x509
 from cryptography.hazmat.backends.openssl import backend
 
 # the version that cryptography uses

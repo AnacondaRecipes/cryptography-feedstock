@@ -9,9 +9,9 @@ source:
   sha256: d1f6198ee6d9148405e49887803907fe8962a23e6c6f83ea7d98f1c0de375695
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py<37 or win32]
-  script: {{ PYTHON }} -m pip install . -vv --no-deps
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   missing_dso_whitelist:  # [s390x]
     - $RPATH/ld64.so.1    # [s390x]
 requirements:
@@ -28,7 +28,7 @@ requirements:
   run:
     - python
     - cffi >=1.12
-    - openssl
+    - openssl >1.1.0, <3.1.0
     - libgcc-ng     # [linux]; needed by `_rust.abi3.so`
 
 test:

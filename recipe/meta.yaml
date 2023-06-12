@@ -9,7 +9,7 @@ source:
   sha256: d1f6198ee6d9148405e49887803907fe8962a23e6c6f83ea7d98f1c0de375695
 
 build:
-  number: 1
+  number: 2
   skip: true  # [py<37 or win32]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   missing_dso_whitelist:  # [s390x]

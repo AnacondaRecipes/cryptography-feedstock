@@ -28,8 +28,8 @@ requirements:
   run:
     - python
     - cffi >=1.12
-    - openssl >1.1.0,<3.1.0
-    - libgcc-ng     # [linux]; needed by `_rust.abi3.so`
+    - openssl 3.*
+      - libgcc-ng     # [linux]; needed by `_rust.abi3.so`
 
 test:
   requires:

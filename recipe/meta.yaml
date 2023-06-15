@@ -1,4 +1,4 @@
-{% set version = "39.0.1" %}
+{% set version = "41.0.1" %}
 
 package:
   name: cryptography
@@ -6,10 +6,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/c/cryptography/cryptography-{{ version }}.tar.gz
-  sha256: d1f6198ee6d9148405e49887803907fe8962a23e6c6f83ea7d98f1c0de375695
+  sha256: d34579085401d3f49762d2f7d6634d6b6c2ae1242202e860f4d26b046e3a1006
 
 build:
-  number: 1
+  number: 0
   skip: true  # [py<37 or win32]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   missing_dso_whitelist:  # [s390x]
@@ -25,10 +25,11 @@ requirements:
     - setuptools >=40.6.0,!=60.9.0
     - setuptools-rust >=0.11.4
     - wheel
+    - openssl {{openssl}}
   run:
     - python
     - cffi >=1.12
-    - openssl 3.*
+    - openssl
     - libgcc-ng     # [linux]; needed by `_rust.abi3.so`
 
 test:

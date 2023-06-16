@@ -25,6 +25,7 @@ requirements:
     - setuptools >=40.6.0,!=60.9.0
     - setuptools-rust >=0.11.4
     - wheel
+    - pkgconfig
     - openssl {{openssl}}
   run:
     - python

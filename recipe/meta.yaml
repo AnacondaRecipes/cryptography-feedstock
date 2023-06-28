@@ -23,11 +23,10 @@ requirements:
   build:
     - {{ compiler('rust') }}
     - vs2017_{{ target_platform }}    # [win]
-    - cffi >=1.12
   host:
     - python
     - pip
-    - setuptools >=40.6.0,!=60.9.0
+    - setuptools >=61.0.0
     - setuptools-rust >=0.11.4
     - wheel
     - openssl {{openssl}}
@@ -40,18 +39,16 @@ requirements:
 
 test:
   requires:
-    - cryptography-vectors {{ version }}
-    - hypothesis >=1.11.4,!=3.79.2
-    - iso8601
+    - cryptography-vectors == {{ version }}
     - pip
-    - pretend
     - pytest >=6.2.0
-    - pytest-subtests
-    - pytest-xdist
     - pytest-benchmark
-    - pytz
+    - pytest-cov
+    - pytest-xdist
+    - pretend
   source_files:
     - tests
+    - pyproject.toml
   commands:
     - pip check
     # run_test.py will check that the correct openssl version is linked

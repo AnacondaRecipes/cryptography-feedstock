@@ -1,0 +1,3 @@
+# rust compilier specified so the rust-gnu compiler will not be used.
+rust_compiler:
+  - rust

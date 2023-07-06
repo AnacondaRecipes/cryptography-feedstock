@@ -1,4 +1,4 @@
-{% set version = "39.0.1" %}
+{% set version = "41.0.1" %}
 
 package:
   name: cryptography
@@ -6,12 +6,17 @@ package:
 
 source:
   url: https://pypi.io/packages/source/c/cryptography/cryptography-{{ version }}.tar.gz
-  sha256: d1f6198ee6d9148405e49887803907fe8962a23e6c6f83ea7d98f1c0de375695
+  sha256: d34579085401d3f49762d2f7d6634d6b6c2ae1242202e860f4d26b046e3a1006
 
 build:
   number: 0
   skip: true  # [py<37 or win32]
-  script: {{ PYTHON }} -m pip install . -vv --no-deps
+  script:
+  # As of cryptography version 40.0.0, build instructions have changed: https://cryptography.io/en/latest/changelog/#v40-0-0
+  # here is the documentation on setting things manually, https://docs.rs/openssl/latest/openssl/#manual
+  - export OPENSSL_DIR=$PREFIX        # [unix]
+  - set OPENSSL_DIR=%LIBRARY_PREFIX%  # [win]
+  - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   missing_dso_whitelist:  # [s390x]
     - $RPATH/ld64.so.1    # [s390x]
 requirements:
@@ -20,11 +25,16 @@ requirements:
     - vs2017_{{ target_platform }}    # [win]
   host:
     - python
-    - cffi >=1.12
     - pip
-    - setuptools >=40.6.0,!=60.9.0
+    - setuptools >=61.0.0
     - setuptools-rust >=0.11.4
     - wheel
+    - openssl {{openssl}} # [not ppc64le]
+    # linux-ppc64le failing test phase on all 1.1.1 builds skipping until 1.1.1 is dropped completely
+    # for more info on error: https://anaconda.atlassian.net/browse/PKG-2252
+    # This can be dropped after OpenSSL 1.1.1 support is dropped in Sept 2023
+    - openssl ==3.0.* # [ppc64le]
+    - cffi >=1.12
   run:
     - python
     - cffi >=1.12
@@ -34,17 +44,15 @@ requirements:
 test:
   requires:
     - cryptography-vectors {{ version }}
-    - hypothesis >=1.11.4,!=3.79.2
-    - iso8601
     - pip
-    - pretend
     - pytest >=6.2.0
-    - pytest-subtests
-    - pytest-xdist
     - pytest-benchmark
-    - pytz
+    - pytest-cov
+    - pytest-xdist
+    - pretend
   source_files:
     - tests
+    - pyproject.toml
   commands:
     - pip check
     # run_test.py will check that the correct openssl version is linked

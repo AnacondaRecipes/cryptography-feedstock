@@ -9,7 +9,7 @@ source:
   sha256: 6d192741113ef5e30d89dcb5b956ef4e1578f304708701b8b73d38e3e1461f34
 
 build:
-  number: 0
+  number: 0 # trigger
   skip: true  # [py<37 or win32]
   # linux-ppc64le failing test phase on all 1.1.1 builds skipping until 1.1.1 is dropped completely
   # for more info on error: https://anaconda.atlassian.net/browse/PKG-2252

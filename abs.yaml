@@ -1,1 +1,2 @@
-staging_channel_upload_target: crypt_41.0.7
+channels:
+  - https://staging.continuum.io/prefect/fs/cryptography-vectors-feedstock/pr18/4f8af94

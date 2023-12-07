@@ -1,0 +1,6 @@
+build_parameters:
+  - "--suppress-variables"
+  - "--skip-existing"
+  - "--error-overlinking"
+
+staging_channel_upload_target: cryptography_41.0.7

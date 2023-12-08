@@ -11,12 +11,6 @@ source:
 build:
   number: 0
   skip: true  # [py<37 or win32]
-  # linux-ppc64le failing test phase on all 1.1.1 builds skipping until 1.1.1 is dropped completely
-  # for more info on error: https://anaconda.atlassian.net/browse/PKG-2252
-  # This can be dropped after OpenSSL 1.1.1 support is dropped in Sept 2023
-  {% if ARCH == "ppc64le" and (openssl | string).startswith('1.1.1') %}
-  skip: true
-  {% endif %}
   script:
   # As of cryptography version 40.0.0, build instructions have changed: https://cryptography.io/en/latest/changelog/#v40-0-0
   # here is the documentation on setting things manually, https://docs.rs/openssl/latest/openssl/#manual

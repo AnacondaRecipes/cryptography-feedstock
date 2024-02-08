@@ -10,7 +10,7 @@ source:
 
 build:
   number: 0
-  skip: true  # [py<37 or win32]
+  skip: true  # [py<37]
   script:
   # As of cryptography version 40.0.0, build instructions have changed: https://cryptography.io/en/latest/changelog/#v40-0-0
   # here is the documentation on setting things manually, https://docs.rs/openssl/latest/openssl/#manual
@@ -28,7 +28,7 @@ requirements:
     - python
     - pip
     - setuptools >=61.0.0
-    - setuptools-rust >=0.11.4
+    - setuptools-rust >=1.7.0
     - wheel
     - openssl {{openssl}}
     - cffi 1.15.1
@@ -60,7 +60,7 @@ about:
   home: https://github.com/pyca/cryptography
   license: Apache-2.0 OR BSD-3-Clause
   license_family: Apache
-  license_file: |
+  license_file:
     - LICENSE
     - LICENSE.APACHE
     - LICENSE.BSD
@@ -72,8 +72,8 @@ about:
     cryptography includes both high level recipes and low level interfaces to
     common cryptographic algorithms such as symmetric ciphers, message digests,
     and key derivation functions.
-  doc_url: https://cryptography.io/
   dev_url: https://github.com/pyca/cryptography
+  doc_url: https://cryptography.io/
 
 extra:
   recipe-maintainers:

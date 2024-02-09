@@ -1,4 +1,4 @@
-{% set version = "42.0.2" %}
+{% set version = "41.0.7" %}
 
 package:
   name: cryptography
@@ -6,11 +6,11 @@ package:
 
 source:
   url: https://pypi.io/packages/source/c/cryptography/cryptography-{{ version }}.tar.gz
-  sha256: e0ec52ba3c7f1b7d813cd52649a5b3ef1fc0d433219dc8c93827c57eab6cf888
+  sha256: 13f93ce9bea8016c253b34afc6bd6a75993e5c40672ed5405a9c832f0d4a00bc
 
 build:
   number: 0
-  skip: true  # [py<37]
+  skip: true  # [py<37 or win32]
   script:
   # As of cryptography version 40.0.0, build instructions have changed: https://cryptography.io/en/latest/changelog/#v40-0-0
   # here is the documentation on setting things manually, https://docs.rs/openssl/latest/openssl/#manual
@@ -28,7 +28,7 @@ requirements:
     - python
     - pip
     - setuptools >=61.0.0
-    - setuptools-rust >=1.7.0
+    - setuptools-rust >=0.11.4
     - wheel
     - openssl {{openssl}}
     - cffi 1.15.1
@@ -40,7 +40,6 @@ requirements:
 
 test:
   requires:
-    - certifi
     - cryptography-vectors {{ version }}
     - pip
     - pytest >=6.2.0
@@ -59,12 +58,9 @@ test:
 
 about:
   home: https://github.com/pyca/cryptography
-  license: Apache-2.0 OR BSD-3-Clause
-  license_family: OTHER
-  license_file:
-    - LICENSE
-    - LICENSE.APACHE
-    - LICENSE.BSD
+  license: (BSD-3-Clause OR Apache-2.0) AND PSF-2.0 AND MIT
+  license_family: BSD
+  license_url: https://github.com/pyca/cryptography/blob/{{ version }}/vectors/LICENSE
   summary: Provides cryptographic recipes and primitives to Python developers
   description: |
     Cryptography is a package which provides cryptographic recipes and
@@ -73,8 +69,8 @@ about:
     cryptography includes both high level recipes and low level interfaces to
     common cryptographic algorithms such as symmetric ciphers, message digests,
     and key derivation functions.
+  doc_url: https://cryptography.io/en/{{ version }}/
   dev_url: https://github.com/pyca/cryptography
-  doc_url: https://cryptography.io/
 
 extra:
   recipe-maintainers:

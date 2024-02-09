@@ -40,6 +40,7 @@ requirements:
 
 test:
   requires:
+    - certifi
     - cryptography-vectors {{ version }}
     - pip
     - pytest >=6.2.0

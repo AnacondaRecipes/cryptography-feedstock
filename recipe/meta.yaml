@@ -60,8 +60,11 @@ test:
 about:
   home: https://github.com/pyca/cryptography
   license: Apache-2.0 OR BSD-3-Clause
-  license_family: Apache
-  license_file: LICENSE
+  license_family: OTHER
+  license_file:
+    - LICENSE
+    - LICENSE.APACHE
+    - LICENSE.BSD
   summary: Provides cryptographic recipes and primitives to Python developers
   description: |
     Cryptography is a package which provides cryptographic recipes and

@@ -22,8 +22,9 @@ build:
 requirements:
   build:
     - {{ compiler('rust') }}
+    # forcing rust to 1.71 to keep compatiblity with osx 10.9.
+    - rust <1.72
     - vs2017_{{ target_platform }}    # [win]
-
   host:
     - python
     - pip

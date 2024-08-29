@@ -1,4 +1,4 @@
-{% set version = "42.0.5" %}
+{% set version = "43.0.0" %}
 
 package:
   name: cryptography
@@ -6,39 +6,42 @@ package:
 
 source:
   url: https://pypi.io/packages/source/c/cryptography/cryptography-{{ version }}.tar.gz
-  sha256: 6fe07eec95dfd477eb9530aef5bead34fec819b3aaf6c5bd6d20565da607bfe1
+  sha256: b88075ada2d51aa9f18283532c9f60e72170041bba88d7f37e49cbb10275299e
 
 build:
-  number: 1
+  number: 0
   skip: true  # [py<37]
   script:
-  # As of cryptography version 40.0.0, build instructions have changed: https://cryptography.io/en/latest/changelog/#v40-0-0
-  # here is the documentation on setting things manually, https://docs.rs/openssl/latest/openssl/#manual
-  - export OPENSSL_DIR=$PREFIX        # [unix]
-  - set OPENSSL_DIR=%LIBRARY_PREFIX%  # [win]
-  - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+    # As of cryptography version 40.0.0, build instructions have changed: https://cryptography.io/en/latest/changelog/#v40-0-0
+    # here is the documentation on setting things manually, https://docs.rs/openssl/latest/openssl/#manual
+    - export OPENSSL_DIR=$PREFIX        # [unix]
+    - set OPENSSL_DIR=%LIBRARY_PREFIX%  # [win]
+    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   missing_dso_whitelist:  # [s390x]
     - $RPATH/ld64.so.1    # [s390x]
 requirements:
   build:
     - {{ compiler('rust') }}
-    # forcing rust to 1.71 to keep compatiblity with osx 10.9.
+    # forcing rust to 1.71 to keep compatibility with osx 10.9.
     - rust <1.72
     - vs2017_{{ target_platform }}    # [win]
   host:
     - python
     - pip
-    - setuptools >=61.0.0
-    - setuptools-rust >=1.7.0
+    - setuptools !=74.0.0
     - wheel
+    - maturin >=1,<2
     - openssl {{openssl}}
-    - cffi 1.15.1
+    - cffi >=1.12
   run:
     - python
     - cffi >=1.12
     - openssl
     - libgcc-ng     # [linux]; needed by `_rust.abi3.so`
+  run_constrained:
+    - bcrypt >=3.1.5
 
+# Import tests take place in run_test.py
 test:
   requires:
     - certifi
@@ -56,7 +59,7 @@ test:
     - pip check
     # run_test.py will check that the correct openssl version is linked
     - pytest -n auto #  [not arm64]
-    - pytest -n auto -k "not (test_der_x509_certificate_extensions[x509/PKITS_data/certs/ValidcRLIssuerTest28EE.crt] or test_x509_csr_extensions or test_no_leak_free or test_no_leak_no_malloc or test_leak or test_load_pkcs12_key_and_certificates[pkcs12/cert-key-aes256cbc.p12] or test_create_certificate_with_extensions or test_ec_derive_private_key or test_ec_private_numbers_private_key or test_create_ocsp_request or test_write_pkcs12_key_and_certificates or test_errors or test_load_pkcs12_key_and_certificates[pkcs12/cert-aes256cbc-no-key.p12] or test_ec_private_numbers_private_key or test_pem_x509_certificate_extensions[x509/cryptography.io.pem] or test_create_crl_with_idp or test_no_leak_gc or test_x25519_pubkey_from_private_key)" # [arm64]
+    - pytest -n auto -k "not (test_x509_csr_extensions or test_no_leak_free or test_no_leak_no_malloc or test_leak or test_create_certificate_with_extensions or test_ec_derive_private_key or test_ec_private_numbers_private_key or test_create_ocsp_request or test_write_pkcs12_key_and_certificates or test_errors or test_ec_private_numbers_private_key or test_create_crl_with_idp or test_no_leak_gc or test_x25519_pubkey_from_private_key)" # [arm64]
 
 about:
   home: https://github.com/pyca/cryptography

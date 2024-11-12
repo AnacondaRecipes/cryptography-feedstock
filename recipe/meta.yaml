@@ -28,11 +28,11 @@ requirements:
   host:
     - python
     - pip
-    - setuptools !=74.0.0
+    - setuptools !=74.0.0,!=74.1.0,!=74.1.1,!=74.1.2,!=74.1.3,!=75.0.0,!=75.1.0,!=75.2.0
     - wheel
     - maturin >=1,<2
-    - openssl {{openssl}}
     - cffi >=1.12
+    - openssl {{ openssl }}
   run:
     - python
     - cffi >=1.12
@@ -49,7 +49,6 @@ test:
     - pip
     - pytest >=6.2.0
     - pytest-benchmark
-    - pytest-cov
     - pytest-xdist
     - pretend
   source_files:

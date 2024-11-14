@@ -48,7 +48,6 @@ test:
     - cryptography-vectors {{ version }}
     - pip
     - pytest >=6.2.0
-    - pytest-benchmark
     - pytest-xdist
     - pretend
   source_files:

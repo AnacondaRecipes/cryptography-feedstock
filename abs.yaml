@@ -1,0 +1,3 @@
+channels:
+  - https://staging.continuum.io/prefect/fs/rust-feedstock/pr10/0bc2102
+  - https://staging.continuum.io/prefect/fs/rust-activation-feedstock/pr8/7c6b32f

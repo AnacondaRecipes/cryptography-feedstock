@@ -9,7 +9,7 @@ source:
   sha256: b88075ada2d51aa9f18283532c9f60e72170041bba88d7f37e49cbb10275299e
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py<37]
   script:
     # As of cryptography version 40.0.0, build instructions have changed: https://cryptography.io/en/latest/changelog/#v40-0-0
@@ -22,8 +22,6 @@ build:
 requirements:
   build:
     - {{ compiler('rust') }}
-    # forcing rust to 1.71 to keep compatibility with osx 10.9.
-    - rust <1.72
     - vs2017_{{ target_platform }}    # [win]
   host:
     - python

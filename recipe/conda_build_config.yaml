@@ -2,4 +2,4 @@
 rust_compiler:
   - rust
 rust_compiler_version:
-  - 1.71.1
+  - 1.81.0

@@ -9,7 +9,7 @@ source:
   sha256: 315b9001266a492a6ff443b61238f956b214dbec9910a081ba5b6646a055a805
 
 build:
-  number: 1
+  number: 2
   skip: true  # [py<37]
   script:
     # As of cryptography version 40.0.0, build instructions have changed: https://cryptography.io/en/latest/changelog/#v40-0-0

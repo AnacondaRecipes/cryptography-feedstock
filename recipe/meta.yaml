@@ -1,4 +1,4 @@
-{% set version = "43.0.3" %}
+{% set version = "44.0.1" %}
 
 package:
   name: cryptography
@@ -6,10 +6,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/c/cryptography/cryptography-{{ version }}.tar.gz
-  sha256: 315b9001266a492a6ff443b61238f956b214dbec9910a081ba5b6646a055a805
+  sha256: f51f5705ab27898afda1aaa430f34ad90dc117421057782022edf0600bec5f14
 
 build:
-  number: 1
+  number: 0
   skip: true  # [py<37]
   script:
     # As of cryptography version 40.0.0, build instructions have changed: https://cryptography.io/en/latest/changelog/#v40-0-0
@@ -42,13 +42,13 @@ requirements:
 # Import tests take place in run_test.py
 test:
   requires:
-    - certifi
+    - certifi >=2024
     - cryptography-vectors {{ version }}
     - pip
-    - pytest >=6.2.0
-    - pytest-xdist
-    - pytest-benchmark
-    - pretend
+    - pytest >=7.4.0
+    - pytest-xdist >=3.5.0
+    - pytest-benchmark >=4.0
+    - pretend >=0.7
   source_files:
     - tests
     - pyproject.toml

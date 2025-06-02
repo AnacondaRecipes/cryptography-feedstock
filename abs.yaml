@@ -1,2 +1,4 @@
-build_env_vars:
-  ANACONDA_ROCKET_ENABLE_PY313: yes
+channels:
+  - https://staging.continuum.io/prefect/fs/cryptography-vectors-feedstock/pr24/51f5409
+  - https://staging.continuum.io/prefect/fs/setuptools-rust-feedstock/pr7/91dab88
+  - https://staging.continuum.io/prefect/fs/maturin-feedstock/pr13/aaf04e3

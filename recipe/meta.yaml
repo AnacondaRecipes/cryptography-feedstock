@@ -1,4 +1,4 @@
-{% set version = "44.0.1" %}
+{% set version = "45.0.3" %}
 
 package:
   name: cryptography
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/c/cryptography/cryptography-{{ version }}.tar.gz
-  sha256: f51f5705ab27898afda1aaa430f34ad90dc117421057782022edf0600bec5f14
+  sha256: ec21313dd335c51d7877baf2972569f40a4291b76a0ce51391523ae358d05899
 
 build:
   number: 0
@@ -26,14 +26,14 @@ requirements:
   host:
     - python
     - pip
-    - setuptools !=74.0.0,!=74.1.0,!=74.1.1,!=74.1.2,!=74.1.3,!=75.0.0,!=75.1.0,!=75.2.0
+    - setuptools !=74.0.0,!=74.1.0,!=74.1.1,!=74.1.2
     - wheel
-    - maturin >=1,<2
-    - cffi >=1.12
+    - maturin >=1.8.6,<2
+    - cffi >=1.14
     - openssl {{ openssl }}
   run:
     - python
-    - cffi >=1.12
+    - cffi >=1.14
     - openssl
     - libgcc-ng     # [linux]; needed by `_rust.abi3.so`
   run_constrained:

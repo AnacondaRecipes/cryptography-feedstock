@@ -1,4 +1,4 @@
-{% set version = "45.0.3" %}
+{% set version = "45.0.5" %}
 
 package:
   name: cryptography
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/c/cryptography/cryptography-{{ version }}.tar.gz
-  sha256: ec21313dd335c51d7877baf2972569f40a4291b76a0ce51391523ae358d05899
+  sha256: 72e76caa004ab63accdf26023fccd1d087f6d90ec6048ff33ad0445abf7f605a
 
 build:
   number: 0
@@ -17,8 +17,6 @@ build:
     - export OPENSSL_DIR=$PREFIX        # [unix]
     - set OPENSSL_DIR=%LIBRARY_PREFIX%  # [win]
     - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  missing_dso_whitelist:  # [s390x]
-    - $RPATH/ld64.so.1    # [s390x]
 requirements:
   build:
     - {{ compiler('rust') }}

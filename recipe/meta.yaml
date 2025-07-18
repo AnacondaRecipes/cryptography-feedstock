@@ -27,7 +27,7 @@ requirements:
     - setuptools !=74.0.0,!=74.1.0,!=74.1.1,!=74.1.2
     - wheel
     - maturin >=1.8.6,<2
-    - cffi 1.17.1
+    - cffi >=1.14
     - openssl {{ openssl }}
   run:
     - python

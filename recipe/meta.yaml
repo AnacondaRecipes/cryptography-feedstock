@@ -1,5 +1,5 @@
 {% set name = "cryptography" %}
-{% set version = "45.0.7" %}
+{% set version = "46.0.2" %}
 
 package:
   name: {{ name }}-split
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/pyca/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 45510eacb3c64216da238cd9d959815ab4bf6652cee84607f4319b134ec0504e
+  sha256: 6b849ebfb291a5e1e4fc84e63506ee4f59725a1dfbff3e5e7484bd53bac91f87
 
 requirements:
   host:
@@ -29,7 +29,7 @@ outputs:
       host:
         - pip
         - python
-        - flit-core >=3.2,<4
+        - uv-build >=0.7.19,<0.10.0
       run:
         - python
     test:
@@ -51,13 +51,14 @@ outputs:
         - pip
         - python
         - setuptools !=74.0.0,!=74.1.0,!=74.1.1,!=74.1.2
-        - cffi >=1.14
+        - cffi>=1.14  # [py==38]
+        - cffi>=2.0.0  # [py>=39]
         - maturin >=1.9.4,<2
-        - openssl {{ openssl }}
       run:
         - python
-        - cffi >=1.14
-        - openssl
+        - cffi>=1.14  # [py==38]
+        - cffi>=2.0.0  # [py>=39]
+        - typing-extensions >=4.13.2  # [py<311]
       run_constrained:
         - bcrypt >=3.1.5
 
@@ -78,13 +79,13 @@ outputs:
         - cryptography.hazmat.primitives.twofactor
         - cryptography.x509
       requires:
-        - certifi >=2024
-        - cryptography-vectors {{ version }}
         - pip
         - pytest >=7.4.0
         - pytest-xdist >=3.5.0
         - pytest-benchmark >=4.0
         - pretend >=0.7
+        - certifi >=2024
+        - cryptography-vectors {{ version }}
       source_files:
         - tests
         - pyproject.toml
@@ -106,7 +107,7 @@ about:
   description: |
     Cryptography is a package which provides cryptographic recipes and
     primitives to Python developers. Our goal is for it to be your
-    "cryptographic standard library". It supports Python 3.6+ and PyPy3 7.2+.
+    "cryptographic standard library". It supports 3.8+ / PyPy 7.3.11+.
     cryptography includes both high level recipes and low level interfaces to
     common cryptographic algorithms such as symmetric ciphers, message digests,
     and key derivation functions.

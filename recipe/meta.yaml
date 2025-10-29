@@ -17,12 +17,12 @@ requirements:
     - python
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: {{ name }}-vectors
     script: build_vectors.bat  # [win]
-    script: build_vectors.sh   # [not win]
+    script: build_vectors.sh  # [not win]
     run_exports:
       - {{ pin_subpackage('cryptography-vectors', max_pin='x.x.x') }}
     requirements:
@@ -41,7 +41,7 @@ outputs:
         - pip check
   - name: {{ name }}
     script: build_main.bat  # [win]
-    script: build_main.sh   # [not win]
+    script: build_main.sh  # [not win]
     requirements:
       build:
         - {{ stdlib('c') }}
@@ -61,7 +61,6 @@ outputs:
         - typing-extensions >=4.13.2  # [py<311]
       run_constrained:
         - bcrypt >=3.1.5
-
     # Import tests take place in run_test.py
     test:
       imports:

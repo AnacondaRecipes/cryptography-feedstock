@@ -54,13 +54,16 @@ outputs:
         - cffi>=1.14  # [py==38]
         - cffi>=2.0.0  # [py>=39]
         - maturin >=1.9.4,<2
+        - openssl {{ openssl }}
+        # used by cffi
+        - setuptools
       run:
         - python
         - cffi>=1.14  # [py==38]
         - cffi>=2.0.0  # [py>=39]
         - typing-extensions >=4.13.2  # [py<311]
         # cryptography/hazmat/bindings/_rust.abi3.so requires DSO lib/libssl.so.3
-        - openssl 3.0.*
+        - openssl
       run_constrained:
         - bcrypt >=3.1.5
     # Import tests take place in run_test.py

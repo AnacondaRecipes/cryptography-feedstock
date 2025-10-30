@@ -42,11 +42,6 @@ outputs:
   - name: {{ name }}
     script: build_main.bat  # [win]
     script: build_main.sh  # [not win]
-    # hazmat bindings openssl:
-    # cryptography.hazmat.backends.openssl
-    # cryptography.hazmat.bindings.openssl
-    ignore_run_exports:
-      - openssl
     requirements:
       build:
         - {{ stdlib('c') }}
@@ -64,6 +59,8 @@ outputs:
         - cffi>=1.14  # [py==38]
         - cffi>=2.0.0  # [py>=39]
         - typing-extensions >=4.13.2  # [py<311]
+        # cryptography/hazmat/bindings/_rust.abi3.so requires DSO lib/libssl.so.3
+        - openssl 3.0.*
       run_constrained:
         - bcrypt >=3.1.5
     # Import tests take place in run_test.py

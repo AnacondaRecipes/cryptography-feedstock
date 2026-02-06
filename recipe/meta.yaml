@@ -1,5 +1,5 @@
 {% set name = "cryptography" %}
-{% set version = "46.0.3" %}
+{% set version = "46.0.4" %}
 
 package:
   name: {{ name }}-split
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/pyca/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
-  sha256: b40f9434d14affd208f03f4832aa616cb49e9ce414cb103825a8184eb94002f5
+  sha256: 0d4c4ee204fe281811d623abd66143848cdba64302c194f2704a904eb1d5dde8
 
 requirements:
   host:
@@ -44,7 +44,8 @@ outputs:
     script: build_main.sh  # [not win]
     requirements:
       build:
-        - {{ stdlib('c') }}
+        # Do not use stdlib('c') on Windows, as it clashes with the current rust 1.90.0.
+        - {{ stdlib('c') }}  # [not win]
         - {{ compiler('c') }}
         - {{ compiler('rust') }}
       host:

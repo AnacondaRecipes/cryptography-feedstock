@@ -44,8 +44,7 @@ outputs:
     script: build_main.sh  # [not win]
     requirements:
       build:
-        # Do not use stdlib('c') on Windows, as it clashes with the current rust 1.90.0.
-        - {{ stdlib('c') }}  # [not win]
+        - {{ stdlib('c') }}
         - {{ compiler('c') }}
         - {{ compiler('rust') }}
       host:

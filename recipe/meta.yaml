@@ -30,7 +30,10 @@ outputs:
       host:
         - pip
         - python
-        - uv-build >=0.7.19,<0.9.0
+        # Exact pinning from vectors' pyproject.toml
+        - uv-build >=0.7.19,<0.9.0 # [py<314]
+        # Loose upper pinning to allow py314 build
+        - uv-build >=0.7.19,<0.10.0 # [py>=314]
       run:
         - python
     test:

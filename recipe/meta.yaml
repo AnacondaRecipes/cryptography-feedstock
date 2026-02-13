@@ -23,7 +23,7 @@ build:
 outputs:
   - name: {{ name }}-vectors
     script: build_vectors.bat  # [win]
-    script: build_vectors.sh  # [not win]
+    script: build_vectors.sh   # [not win]
     run_exports:
       - {{ pin_subpackage('cryptography-vectors', max_pin='x.x.x') }}
     requirements:

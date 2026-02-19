@@ -1,5 +1,5 @@
 {% set name = "cryptography" %}
-{% set version = "46.0.4" %}
+{% set version = "46.0.5" %}
 
 package:
   name: {{ name }}-split
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/pyca/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 0d4c4ee204fe281811d623abd66143848cdba64302c194f2704a904eb1d5dde8
+  sha256: 7571f0e09a6d6eb22168993f94d35867b4dcbd0d34224e0eb7b392b905b3f12f
 
 requirements:
   host:
@@ -18,18 +18,22 @@ requirements:
 
 build:
   number: 0
+  skip: true  # [py<38]
 
 outputs:
   - name: {{ name }}-vectors
     script: build_vectors.bat  # [win]
-    script: build_vectors.sh  # [not win]
+    script: build_vectors.sh   # [not win]
     run_exports:
       - {{ pin_subpackage('cryptography-vectors', max_pin='x.x.x') }}
     requirements:
       host:
         - pip
         - python
-        - uv-build >=0.7.19,<0.10.0
+        # Exact pinning from vectors' pyproject.toml
+        - uv-build >=0.7.19,<0.9.0 # [py<314]
+        # Loose upper pinning to allow py314 build
+        - uv-build >=0.7.19,<0.10.0 # [py>=314]
       run:
         - python
     test:
@@ -41,7 +45,7 @@ outputs:
         - pip check
   - name: {{ name }}
     script: build_main.bat  # [win]
-    script: build_main.sh  # [not win]
+    script: build_main.sh   # [not win]
     requirements:
       build:
         # Do not use stdlib('c') on Windows, as it clashes with the current rust 1.90.0.
@@ -65,6 +69,7 @@ outputs:
         - typing-extensions >=4.13.2  # [py<311]
       run_constrained:
         - bcrypt >=3.1.5
+        - python !=3.9.0,!=3.9.1
     # Import tests take place in run_test.py
     test:
       imports:
@@ -106,6 +111,9 @@ about:
     - LICENSE
     - LICENSE.APACHE
     - LICENSE.BSD
+    - vectors/LICENSE
+    - vectors/LICENSE.APACHE
+    - vectors/LICENSE.BSD
   summary: Provides cryptographic recipes and primitives to Python developers
   description: |
     Cryptography is a package which provides cryptographic recipes and

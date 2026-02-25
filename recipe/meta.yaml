@@ -17,7 +17,7 @@ requirements:
     - python
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py<38]
 
 outputs:
@@ -58,7 +58,7 @@ outputs:
         - cffi>=1.14  # [py==38]
         - cffi>=2.0.0  # [py>=39]
         - maturin >=1.9.4,<2
-        - openssl {{ openssl }}
+        - openssl 3.5
         - setuptools !=74.0.0,!=74.1.0,!=74.1.1,!=74.1.2
       run:
         - python

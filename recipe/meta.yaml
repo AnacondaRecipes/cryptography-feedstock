@@ -120,8 +120,8 @@ about:
     primitives to Python developers. Our goal is for it to be your
     "cryptographic standard library". It supports 3.8+ / PyPy 7.3.11+.
     cryptography includes both high level recipes and low level interfaces to
-    common cryptographic algorithms such as symmetric ciphers, message digests,
-    and key derivation functions.
+    common cryptographic algorithms such as symmetric ciphers, 
+    message digests, and key derivation functions.
   dev_url: https://github.com/pyca/cryptography
   doc_url: https://cryptography.io
 

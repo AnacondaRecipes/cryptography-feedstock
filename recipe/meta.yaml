@@ -17,7 +17,7 @@ requirements:
     - python
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py<38]
 
 outputs:
@@ -31,9 +31,9 @@ outputs:
         - pip
         - python
         # Exact pinning from vectors' pyproject.toml
-        - uv-build >=0.7.19,<0.9.0 # [py<314]
+        - uv-build >=0.7.19,<0.9.0  # [py<314]
         # Loose upper pinning to allow py314 build
-        - uv-build >=0.7.19,<0.10.0 # [py>=314]
+        - uv-build >=0.7.19,<0.10.0  # [py>=314]
       run:
         - python
     test:
@@ -120,8 +120,8 @@ about:
     primitives to Python developers. Our goal is for it to be your
     "cryptographic standard library". It supports 3.8+ / PyPy 7.3.11+.
     cryptography includes both high level recipes and low level interfaces to
-    common cryptographic algorithms such as symmetric ciphers, message digests,
-    and key derivation functions.
+    common cryptographic algorithms such as symmetric ciphers, 
+    message digests, and key derivation functions.
   dev_url: https://github.com/pyca/cryptography
   doc_url: https://cryptography.io
 

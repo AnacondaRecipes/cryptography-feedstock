@@ -1,5 +1,5 @@
 {% set name = "cryptography" %}
-{% set version = "46.0.6" %}
+{% set version = "46.0.7" %}
 
 package:
   name: {{ name }}-split
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/pyca/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 234935d92ba2320836036c281163ea64837455dd7e0aaa0f034e574ccc7b4c64
+  sha256: 16906783d5731a2b14aaf34480e97d0df2909ef244ca6eb9feda98603bb43d16
 
 requirements:
   host:
@@ -17,7 +17,7 @@ requirements:
     - python
 
 build:
-  number: 1
+  number: 0
   skip: true  # [py<38]
 
 outputs:
@@ -55,15 +55,13 @@ outputs:
       host:
         - python
         - pip
-        - cffi>=1.14  # [py==38]
-        - cffi>=2.0.0  # [py>=39]
+        - cffi>=2.0.0
         - maturin >=1.9.4,<2
         - openssl {{ openssl }}
         - setuptools !=74.0.0,!=74.1.0,!=74.1.1,!=74.1.2
       run:
         - python
-        - cffi>=1.14  # [py==38]
-        - cffi>=2.0.0  # [py>=39]
+        - cffi>=2.0.0
         # cryptography/hazmat/bindings/_rust.abi3.so requires DSO lib/libssl.so.3
         - openssl
         - typing-extensions >=4.13.2  # [py<311]

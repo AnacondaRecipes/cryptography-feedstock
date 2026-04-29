@@ -1,5 +1,5 @@
 {% set name = "cryptography" %}
-{% set version = "46.0.7" %}
+{% set version = "47.0.0" %}
 
 package:
   name: {{ name }}-split
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/pyca/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 16906783d5731a2b14aaf34480e97d0df2909ef244ca6eb9feda98603bb43d16
+  sha256: e24d3e87bb025a102671003e7bd32c29439bba9b1896198c7c7ee29e323da87a
 
 requirements:
   host:
@@ -31,9 +31,7 @@ outputs:
         - pip
         - python
         # Exact pinning from vectors' pyproject.toml
-        - uv-build >=0.7.19,<0.9.0  # [py<314]
-        # Loose upper pinning to allow py314 build
-        - uv-build >=0.7.19,<0.10.0  # [py>=314]
+        - uv-build >=0.7.19,<0.11.0
       run:
         - python
     test:
@@ -56,7 +54,7 @@ outputs:
         - python
         - pip
         - cffi>=2.0.0
-        - maturin >=1.9.4,<2
+        - maturin >=1.9.4,<2,!=1.12.0
         - openssl {{ openssl }}
         - setuptools !=74.0.0,!=74.1.0,!=74.1.1,!=74.1.2
       run:

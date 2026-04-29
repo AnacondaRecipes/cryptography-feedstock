@@ -9,13 +9,6 @@ source:
   url: https://github.com/pyca/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
   sha256: e24d3e87bb025a102671003e7bd32c29439bba9b1896198c7c7ee29e323da87a
 
-requirements:
-  host:
-    - pip
-    - python
-  run:
-    - python
-
 build:
   number: 0
   skip: true  # [py<38]
@@ -46,20 +39,19 @@ outputs:
     script: build_main.sh   # [not win]
     requirements:
       build:
-        # Do not use stdlib('c') on Windows, as it clashes with the current rust 1.90.0.
-        - {{ stdlib('c') }}  # [not win]
+        - {{ stdlib('c') }}
         - {{ compiler('c') }}
         - {{ compiler('rust') }}
       host:
         - python
         - pip
-        - cffi>=2.0.0
+        - cffi >=2.0.0
         - maturin >=1.9.4,<2,!=1.12.0
         - openssl {{ openssl }}
         - setuptools !=74.0.0,!=74.1.0,!=74.1.1,!=74.1.2
       run:
         - python
-        - cffi>=2.0.0
+        - cffi >=2.0.0
         # cryptography/hazmat/bindings/_rust.abi3.so requires DSO lib/libssl.so.3
         - openssl
         - typing-extensions >=4.13.2  # [py<311]

@@ -1,5 +1,5 @@
 {% set name = "cryptography" %}
-{% set version = "46.0.7" %}
+{% set version = "48.0.0" %}
 
 package:
   name: {{ name }}-split
@@ -18,7 +18,7 @@ requirements:
 
 build:
   number: 0
-  skip: true  # [py<38]
+  skip: true  # [py<39]
 
 outputs:
   - name: {{ name }}-vectors
@@ -30,10 +30,7 @@ outputs:
       host:
         - pip
         - python
-        # Exact pinning from vectors' pyproject.toml
-        - uv-build >=0.7.19,<0.9.0  # [py<314]
-        # Loose upper pinning to allow py314 build
-        - uv-build >=0.7.19,<0.10.0  # [py>=314]
+        - uv-build >=0.7.19,<0.12.0
       run:
         - python
     test:
@@ -55,9 +52,10 @@ outputs:
       host:
         - python
         - pip
-        - cffi>=2.0.0
-        - maturin >=1.9.4,<2
+        - cffi >=2.0.0
+        - maturin >=1.9.4,<2,!=1.12.0
         - openssl {{ openssl }}
+        - wheel
         - setuptools !=74.0.0,!=74.1.0,!=74.1.1,!=74.1.2
       run:
         - python

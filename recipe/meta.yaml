@@ -1,5 +1,5 @@
 {% set name = "cryptography" %}
-{% set version = "48.0.0" %}
+{% set version = "49.0.0" %}
 
 package:
   name: {{ name }}-split
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/pyca/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 6afca628a004be66b3793481e02eb22ad4a067a052a6785c3736cc135dc7dc24
+  sha256: a533606510cdea9e0f0616c61b18dbe3cfa5a2bbfbf48344a159d6ddc207ae13
 
 requirements:
   host:

@@ -1,5 +1,5 @@
 {% set name = "cryptography" %}
-{% set version = "49.0.0" %}
+{% set version = "50.0.0" %}
 
 package:
   name: {{ name }}-split
@@ -7,7 +7,11 @@ package:
 
 source:
   url: https://github.com/pyca/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
-  sha256: a533606510cdea9e0f0616c61b18dbe3cfa5a2bbfbf48344a159d6ddc207ae13
+  sha256: 173ac75ea60351540a237b8d4fde5d89b5d6645545771dfe3c9abe8b637f2b35
+
+build:
+  number: 0
+  skip: true  # [py<39]
 
 requirements:
   host:
@@ -16,14 +20,10 @@ requirements:
   run:
     - python
 
-build:
-  number: 0
-  skip: true  # [py<39]
-
 outputs:
   - name: {{ name }}-vectors
     script: build_vectors.bat  # [win]
-    script: build_vectors.sh   # [not win]
+    script: build_vectors.sh  # [not win]
     run_exports:
       - {{ pin_subpackage('cryptography-vectors', max_pin='x.x.x') }}
     requirements:
@@ -42,7 +42,7 @@ outputs:
         - pip check
   - name: {{ name }}
     script: build_main.bat  # [win]
-    script: build_main.sh   # [not win]
+    script: build_main.sh  # [not win]
     requirements:
       build:
         # Do not use stdlib('c') on Windows, as it clashes with the current rust 1.90.0.
@@ -59,7 +59,7 @@ outputs:
         - setuptools !=74.0.0,!=74.1.0,!=74.1.1,!=74.1.2
       run:
         - python
-        - cffi>=2.0.0
+        - cffi    >=2.0.0
         # cryptography/hazmat/bindings/_rust.abi3.so requires DSO lib/libssl.so.3
         - openssl
         - typing-extensions >=4.13.2  # [py<311]
@@ -116,7 +116,7 @@ about:
     primitives to Python developers. Our goal is for it to be your
     "cryptographic standard library". It supports 3.8+ / PyPy 7.3.11+.
     cryptography includes both high level recipes and low level interfaces to
-    common cryptographic algorithms such as symmetric ciphers, 
+    common cryptographic algorithms such as symmetric ciphers,
     message digests, and key derivation functions.
   dev_url: https://github.com/pyca/cryptography
   doc_url: https://cryptography.io

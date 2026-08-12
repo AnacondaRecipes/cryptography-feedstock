@@ -30,7 +30,7 @@ outputs:
       host:
         - pip
         - python
-        - uv-build >=0.7.19,<0.12.0
+        - uv-build >=0.7.19,<0.13.0
       run:
         - python
     test:
@@ -54,7 +54,7 @@ outputs:
         - python
         - pip
         - cffi >=2.0.0
-        - maturin >=1.9.4,<2,!=1.12.0
+        - maturin >=1.14.1,<2
         - openssl {{ openssl }}
         - wheel
         - setuptools !=74.0.0,!=74.1.0,!=74.1.1,!=74.1.2

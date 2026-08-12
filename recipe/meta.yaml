@@ -23,7 +23,7 @@ requirements:
 outputs:
   - name: {{ name }}-vectors
     script: build_vectors.bat  # [win]
-    script: build_vectors.sh  # [not win]
+    script: build_vectors.sh   # [not win]
     run_exports:
       - {{ pin_subpackage('cryptography-vectors', max_pin='x.x.x') }}
     requirements:
@@ -43,7 +43,7 @@ outputs:
 
   - name: {{ name }}
     script: build_main.bat  # [win]
-    script: build_main.sh  # [not win]
+    script: build_main.sh   # [not win]
     requirements:
       build:
         # Do not use stdlib('c') on Windows, as it clashes with the current rust 1.90.0.

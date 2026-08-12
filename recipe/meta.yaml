@@ -128,3 +128,6 @@ extra:
     - jakirkham
     - ocefpaf
     - chenghlee
+  skip-lints:
+    - missing_imports_or_run_test_py
+    - should_use_stdlib

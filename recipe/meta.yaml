@@ -53,7 +53,8 @@ outputs:
       host:
         - python
         - pip
-        - cffi >=2.0.0
+        - cffi >=2.0.0  # [py<315]
+        - cffi >=2.1  # [py>=315]
         - maturin >=1.14.1,<2
         - openssl {{ openssl }}
         - wheel
